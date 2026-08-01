@@ -56,6 +56,8 @@ def grab_language_from_filename(x):
 libero_suites = [
     "libero_spatial",
     "libero_spatial_3bowl",
+    "libero_spatial_3bowl_open",
+    "libero_spatial_3bowl_hardneg",
     "libero_object",
     "libero_goal",
     "libero_90",
@@ -182,6 +184,22 @@ class LIBERO_SPATIAL_3BOWL(Benchmark):
     def __init__(self, task_order_index=0):
         super().__init__(task_order_index=task_order_index)
         self.name = "libero_spatial_3bowl"
+        self._make_benchmark()
+
+
+@register_benchmark
+class LIBERO_SPATIAL_3BOWL_OPEN(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "libero_spatial_3bowl_open"
+        self._make_benchmark()
+
+
+@register_benchmark
+class LIBERO_SPATIAL_3BOWL_HARDNEG(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "libero_spatial_3bowl_hardneg"
         self._make_benchmark()
 
 
