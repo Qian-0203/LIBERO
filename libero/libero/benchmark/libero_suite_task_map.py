@@ -57,27 +57,6 @@ libero_task_map = {
         "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
         "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate",
     ],
-    # Path/distance-matched-neutral variant of libero_spatial_3bowl: bowl_3 sits at a
-    # per-task named region chosen (a) to be well clear of the target-to-plate reach
-    # path (unlike the original libero_spatial_3bowl, whose fixed table_center spot
-    # sits ~0.18m off task 6's path and tanks its success rate) and (b) at a distance
-    # from the target broadly comparable to the semantic/hardneg conditions, so
-    # "neutral" is distance-matched rather than a single shared coordinate. Only
-    # regions independently verified elsewhere as safe for free bowl placement (never
-    # a fixture base) are used. See vla_ws/benchmark_split.md Split 2 for the
-    # per-task region table and the reasoning. Task names/order unchanged.
-    "libero_spatial_3bowl_neutral": [
-        "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
-        "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate",
-        "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate",
-        "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate",
-        "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate",
-        "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate",
-        "pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate",
-        "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate",
-        "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
-        "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate",
-    ],
     # Single-task gap-fill suites for Split 4's Surface-vs-Landmark Grounding Probe:
     # the baseline libero_spatial tasks already cover 4 of 6 (target-family,
     # distractor-family) cells naturally (see eval_registry.GROUNDING_PROBE_CELLS);
