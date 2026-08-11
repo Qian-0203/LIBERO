@@ -58,6 +58,9 @@ libero_suites = [
     "libero_spatial_3bowl",
     "libero_spatial_3bowl_open",
     "libero_spatial_3bowl_hardneg",
+    "libero_spatial_3bowl_semantic",
+    "libero_spatial_grounding_surface_landmark",
+    "libero_spatial_grounding_region_surface",
     "libero_object",
     "libero_goal",
     "libero_90",
@@ -117,7 +120,10 @@ class Benchmark(abc.ABC):
 
     def _make_benchmark(self):
         tasks = list(task_maps[self.name].values())
-        if self.name == "libero_90":
+        # `task_orders` above is a set of fixed permutations of indices 0..9, only valid for
+        # exactly 10 tasks. libero_90 already bypassed it for its own size; any other
+        # non-10-task suite (e.g. the single-task grounding-probe suites) must too.
+        if self.name == "libero_90" or len(tasks) != 10:
             self.tasks = tasks
         else:
             print(f"[info] using task orders {task_orders[self.task_order_index]}")
@@ -200,6 +206,30 @@ class LIBERO_SPATIAL_3BOWL_HARDNEG(Benchmark):
     def __init__(self, task_order_index=0):
         super().__init__(task_order_index=task_order_index)
         self.name = "libero_spatial_3bowl_hardneg"
+        self._make_benchmark()
+
+
+@register_benchmark
+class LIBERO_SPATIAL_3BOWL_SEMANTIC(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "libero_spatial_3bowl_semantic"
+        self._make_benchmark()
+
+
+@register_benchmark
+class LIBERO_SPATIAL_GROUNDING_SURFACE_LANDMARK(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "libero_spatial_grounding_surface_landmark"
+        self._make_benchmark()
+
+
+@register_benchmark
+class LIBERO_SPATIAL_GROUNDING_REGION_SURFACE(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "libero_spatial_grounding_region_surface"
         self._make_benchmark()
 
 

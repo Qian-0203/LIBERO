@@ -41,6 +41,34 @@ libero_task_map = {
         "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
         "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate",
     ],
+    # Semantic-distractor variant of libero_spatial_3bowl: bowl_3 sits at a named
+    # landmark region (next to plate / ramekin / cookie box) different from the
+    # target's own landmark, instead of the neutral table center. Split 2's
+    # "Semantic distractor" condition. Task names/order unchanged.
+    "libero_spatial_3bowl_semantic": [
+        "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate",
+    ],
+    # Single-task gap-fill suites for Split 4's Surface-vs-Landmark Grounding Probe:
+    # the baseline libero_spatial tasks already cover 4 of 6 (target-family,
+    # distractor-family) cells naturally (see eval_registry.GROUNDING_PROBE_CELLS);
+    # these two fill the missing cells by moving ONLY the existing distractor bowl
+    # to a different already-defined region. The canonical libero_spatial task is
+    # untouched -- these are separate one-task suites.
+    "libero_spatial_grounding_surface_landmark": [
+        "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate",
+    ],
+    "libero_spatial_grounding_region_surface": [
+        "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate",
+    ],
     # Same as libero_spatial_3bowl but the wooden cabinet's top ("first") drawer is
     # opened in every scene, making the scene more cluttered. Task names/order match
     # libero_spatial exactly so task ids line up.

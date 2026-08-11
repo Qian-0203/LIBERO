@@ -9,7 +9,7 @@ from libero.libero import benchmark, get_libero_path
 from libero.libero.envs import OffScreenRenderEnv
 
 SUITE = sys.argv[1] if len(sys.argv) > 1 else "libero_spatial_3bowl"
-BOWLS = ["akita_black_bowl_1", "akita_black_bowl_2", "akita_black_bowl_3"]
+ALL_BOWLS = ["akita_black_bowl_1", "akita_black_bowl_2", "akita_black_bowl_3"]
 MIN_SEP = 0.12
 
 suite = benchmark.get_benchmark_dict()[SUITE]()
@@ -21,16 +21,25 @@ for tid in range(suite.n_tasks):
     states = torch.load(os.path.join(init_dir, task.init_states_file))
     env = OffScreenRenderEnv(bddl_file_name=bddl, camera_heights=128, camera_widths=128)
     env.seed(0); env.reset()
+    # Not every suite has 3 bowls (e.g. the 2-bowl grounding-probe gap-fill suites),
+    # so only compare pairwise separation among the bowls actually present.
+    bowls = []
+    for b in ALL_BOWLS:
+        try:
+            if env.env.get_object(b) is not None:
+                bowls.append(b)
+        except Exception:
+            pass
     min_sep = 1e9; zmin, zmax = 1e9, -1e9; drawer = None
     for s in states:
         env.set_init_state(s); base = env.env
         xy = {}
-        for b in BOWLS:
+        for b in bowls:
             q = base.sim.data.get_joint_qpos(base.get_object(b).joints[-1])
             xy[b] = q[:3]; zmin, zmax = min(zmin, q[2]), max(zmax, q[2])
-        for i in range(3):
-            for j in range(i + 1, 3):
-                min_sep = min(min_sep, float(np.linalg.norm(xy[BOWLS[i]][:2] - xy[BOWLS[j]][:2])))
+        for i in range(len(bowls)):
+            for j in range(i + 1, len(bowls)):
+                min_sep = min(min_sep, float(np.linalg.norm(xy[bowls[i]][:2] - xy[bowls[j]][:2])))
         # cabinet top drawer prismatic joint (slide); read its position if present
         try:
             for jn in base.sim.model.joint_names:
