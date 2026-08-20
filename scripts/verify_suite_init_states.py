@@ -18,7 +18,7 @@ worst = 1e9; any_fail = False
 for tid in range(suite.n_tasks):
     task = suite.get_task(tid)
     bddl = os.path.join(get_libero_path("bddl_files"), task.problem_folder, task.bddl_file)
-    states = torch.load(os.path.join(init_dir, task.init_states_file))
+    states = torch.load(os.path.join(init_dir, task.init_states_file), weights_only=False)
     env = OffScreenRenderEnv(bddl_file_name=bddl, camera_heights=128, camera_widths=128)
     env.seed(0); env.reset()
     # Not every suite has 3 bowls (e.g. the 2-bowl grounding-probe gap-fill suites),
