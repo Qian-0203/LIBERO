@@ -171,7 +171,11 @@ class Benchmark(abc.ABC):
             self.tasks[i].problem_folder,
             self.tasks[i].init_states_file,
         )
-        init_states = torch.load(init_states_path)
+        # weights_only=False: these are our own trusted, locally-generated init-state
+        # files (numpy arrays pickled by an older torch), not external checkpoints.
+        # PyTorch >=2.6 flipped the default to True, which rejects the numpy globals
+        # they were pickled with.
+        init_states = torch.load(init_states_path, weights_only=False)
         return init_states
 
     def set_task_embs(self, task_embs):
