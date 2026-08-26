@@ -9,7 +9,7 @@ from libero.libero import benchmark, get_libero_path
 from libero.libero.envs import OffScreenRenderEnv
 
 A, B, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
-RES, CAM, SETTLE = 320, "agentview", 12
+RES, CAM, SETTLE = 320, "agentview", 10  # matches run_libero_eval.py's num_steps_wait
 OUTDIR = f"/workspace/LIBERO/scratch_render/{OUT}"
 os.makedirs(OUTDIR, exist_ok=True)
 bd = benchmark.get_benchmark_dict()

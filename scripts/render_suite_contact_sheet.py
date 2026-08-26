@@ -10,6 +10,11 @@ from libero.libero.envs import OffScreenRenderEnv
 
 SUITE = sys.argv[1]
 RES, CAM = 256, "agentview"
+# Matches run_libero_eval.py's cfg.num_steps_wait=10 dummy-action settle before the real eval
+# ever takes an observation -- without this, objects render mid-fall from their sampled init
+# height (e.g. bowls appear to float) instead of resting on the surface the eval actually sees.
+NUM_STEPS_WAIT = 10
+DUMMY_ACTION = [0, 0, 0, 0, 0, 0, -1]
 RENDER_DIR = f"/workspace/LIBERO/scratch_render/{SUITE}"
 os.makedirs(RENDER_DIR, exist_ok=True)
 
@@ -24,6 +29,8 @@ for tid in range(suite.n_tasks):
     env = OffScreenRenderEnv(bddl_file_name=bddl, camera_names=[CAM], camera_heights=RES, camera_widths=RES)
     env.seed(0); env.reset()
     env.set_init_state(states[0])
+    for _ in range(NUM_STEPS_WAIT):
+        env.step(DUMMY_ACTION)
     base = env.env; base.sim.forward()
     img = base.sim.render(camera_name=CAM, width=RES, height=RES)[::-1]
     env.close()
