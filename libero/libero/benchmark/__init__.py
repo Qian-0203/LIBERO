@@ -59,7 +59,9 @@ libero_suites = [
     "libero_spatial_3bowl_open",
     "libero_spatial_3bowl_hardneg",
     "libero_spatial_3bowl_semantic",
+    "libero_spatial_3bowl_semantic2",
     "libero_spatial_3bowl_neutral",
+    "libero_spatial_3bowl_front",
     "libero_spatial_grounding_surface_landmark",
     "libero_spatial_grounding_region_surface",
     "libero_object",
@@ -227,6 +229,22 @@ class LIBERO_SPATIAL_3BOWL_NEUTRAL(Benchmark):
     def __init__(self, task_order_index=0):
         super().__init__(task_order_index=task_order_index)
         self.name = "libero_spatial_3bowl_neutral"
+        self._make_benchmark()
+
+
+@register_benchmark
+class LIBERO_SPATIAL_3BOWL_SEMANTIC2(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "libero_spatial_3bowl_semantic2"
+        self._make_benchmark()
+
+
+@register_benchmark
+class LIBERO_SPATIAL_3BOWL_FRONT(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "libero_spatial_3bowl_front"
         self._make_benchmark()
 
 

@@ -78,6 +78,48 @@ libero_task_map = {
         "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
         "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate",
     ],
+    # Second redefinition of the semantic-distractor variant: identical to
+    # libero_spatial_3bowl_semantic except task 4 (in the top drawer), whose bowl_3
+    # was ~0.58m from the target -- outside the semantic band (0.33-0.50m) the other
+    # 9 tasks land in, effectively behaving like a neutral/irrelevant placement
+    # instead of a genuine semantic distractor. Moved to next_to_box_region (~0.22m
+    # from the drawer), a real named landmark ("next to the cookie box", task 6's
+    # own target phrasing) different from the target's own cabinet/drawer landmark.
+    # libero_spatial_3bowl_semantic is kept, unmodified, as the retired definition
+    # so its existing 84.8% result stays attributable. Task names/order unchanged.
+    "libero_spatial_3bowl_semantic2": [
+        "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate",
+    ],
+    # Second redefinition of the neutral/"irrelevant" variant: bowl_3 always sits at
+    # main_table_table_front (the literal front edge of the table, far from every
+    # object/landmark in every task) instead of libero_spatial_3bowl_neutral's
+    # per-task "least-crowded named region" pick (which reused next_to_ramekin_region
+    # for 5/10 tasks -- itself another task's real target landmark). Two tasks
+    # (next_to_the_ramekin, next_to_the_cookie_box) fall back to main_table_table_center
+    # because their own bowl_1/bowl_2 already sit within ~0.10m of table_front there.
+    # libero_spatial_3bowl_neutral is kept, unmodified, as the retired definition so
+    # its existing 88.8% result stays attributable. Task names/order unchanged.
+    "libero_spatial_3bowl_front": [
+        "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate",
+    ],
     # Single-task gap-fill suites for Split 4's Surface-vs-Landmark Grounding Probe:
     # the baseline libero_spatial tasks already cover 4 of 6 (target-family,
     # distractor-family) cells naturally (see eval_registry.GROUNDING_PROBE_CELLS);
