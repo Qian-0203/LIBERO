@@ -87,18 +87,19 @@ class ControlEnv:
     def step(self, action):
         return self.env.step(action)
 
-    def reset(self):
-        success = False
-        while not success:
+    def reset(self, max_randomization_attempts=50):
+        # NOTE: was an unbounded `while not success` retry -- a persistent RandomizationError
+        # (observed live during a 2026-08-27 eval run: all 4 shards spun at ~100% CPU for over an
+        # hour with zero progress, ~30 resets into a task, repeatedly failing to construct then
+        # immediately tearing down a render context) spun forever instead of failing visibly. Bound
+        # it and raise so a persistent failure surfaces as a crash (recoverable via `--resume True`)
+        # instead of a silent livelock.
+        for attempt in range(max_randomization_attempts):
             try:
-                ret = self.env.reset()
-                success = True
+                return self.env.reset()
             except RandomizationError:
-                pass
-            finally:
-                continue
-
-        return ret
+                if attempt == max_randomization_attempts - 1:
+                    raise
 
     def check_success(self):
         return self.env._check_success()
