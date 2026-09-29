@@ -1,3 +1,11 @@
+> **This fork is the scene half of the [LIBERO-Spatial Grounding Benchmark](https://github.com/Qian-0203/vla_ws).**
+> To evaluate a checkpoint, start from that repo's README. It pulls in this fork as a submodule.
+> What this fork adds on top of upstream LIBERO: `libero_spatial_*` scene-variant suites (extra
+> distractor bowls, an open drawer, and relocated distractors) under `libero/libero/bddl_files/`
+> with pre-sampled `init_files/`, registered in `libero/libero/benchmark/`. It also adds init-state
+> tooling in `scripts/` and contact-sheet renders in `scratch_render/`. The canonical
+> `libero_spatial` suite is untouched. The upstream README follows unchanged.
+
 <div align="center">
 <img src="https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/images/libero_logo.png" width="360">
 

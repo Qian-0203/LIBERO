@@ -64,7 +64,7 @@ libero_task_map = {
     # from the target broadly comparable to the semantic/hardneg conditions, so
     # "neutral" is distance-matched rather than a single shared coordinate. Only
     # regions independently verified elsewhere as safe for free bowl placement (never
-    # a fixture base) are used. See vla_ws/benchmark_split.md Split 2 for the
+    # a fixture base) are used. See vla_ws/docs/benchmark_split_plan.md Split 2 for the
     # per-task region table and the reasoning. Task names/order unchanged.
     "libero_spatial_3bowl_neutral": [
         "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
