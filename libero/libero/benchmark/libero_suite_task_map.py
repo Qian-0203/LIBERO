@@ -120,6 +120,19 @@ libero_task_map = {
         "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
         "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate",
     ],
+    # Landmark-exchange probe: the cookie box and the ramekin swap places in every scene (cookie box ->
+    # ramekin_region, ramekin -> box_region); the sentence stays each task's original libero_spatial
+    # sentence, so the bowl it describes now sits where a different task's target was trained.
+    # bowl_1 is always the bowl the sentence describes (the goal stays On(bowl_1, plate)); bowl_2 sits
+    # at, or on the landmark at, the coordinate this sentence was trained on. Task ids: 0 next to the
+    # ramekin (libero_spatial id 1), 1 on the cookie box (3), 2 on the ramekin (5), 3 next to the cookie
+    # box (6). Pairs (0, 3) and (1, 2) share one layout and differ only in the sentence.
+    "libero_spatial_landmark_exchange": [
+        "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate",
+        "pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate",
+    ],
     # Single-task gap-fill suites for Split 4's Surface-vs-Landmark Grounding Probe:
     # the baseline libero_spatial tasks already cover 4 of 6 (target-family,
     # distractor-family) cells naturally (see eval_registry.GROUNDING_PROBE_CELLS);
